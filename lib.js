@@ -17,7 +17,7 @@ const getTweets = () => tweets
 
 function renderTweet(t, username, includeDate) {
   const tweetUrl = `https://twitter.com/${username}/status/${t.id_str}`
-  const dateString = includeDate ? format(new Date(t.created_at), 'yyyy-MM-dd') : 'none'
+  const dateString = includeDate ? format(new Date(t.created_at), 'yyyy-MM-dd') : ''
   const quote = '> ' + t.full_text.split('\n').join('\n> ')
   return `${quote} [🔗${dateString}](${tweetUrl})`
 }

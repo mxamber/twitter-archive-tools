@@ -20,7 +20,7 @@ const tagTweets = tweets
   }, [])
 
 const render = () => {
-  const md = tagTweets.map(t => renderTweet(t, USERNAME, true)).join('\n\n')
+  const md = tagTweets.map(t => renderTweet(t, USERNAME, true)).join('\n\n<!-- -->\n')
   fs.writeFileSync(`./hashtags/${HASHTAG}.md`, md)
 }
 

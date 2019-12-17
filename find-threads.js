@@ -25,7 +25,7 @@ function addToThread(twt) {
 
 const renderThread = th => {
   const firstId = th.tweets[0].id_str
-  const md = th.tweets.map(t => renderTweet(t, USERNAME)).join('\n\n')
+  const md = th.tweets.map(t => renderTweet(t, USERNAME)).join('\n\n<!-- -->\n')
   fs.writeFileSync(`./threads/${firstId}.md`, md)
 }
 

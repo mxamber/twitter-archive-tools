@@ -18,5 +18,11 @@ hashtags/opsoup.md: hashtags
 hashtags/ThisIsGenderDysphoria.md: hashtags
 	node find-hashtag.js selfawaresoup ThisIsGenderDysphoria
 
+hashtags/trans.md: hashtags
+	node find-hashtag.js selfawaresoup trans
+
+hashtags/solderingsoup.md: hashtags
+	node find-hashtag.js selfawaresoup solderingsoup
+
 clean:
 	rm -rf hashtags threads

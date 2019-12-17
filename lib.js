@@ -13,7 +13,16 @@ tweets.sort((a, b) => {
   return compareAsc(new Date(a.created_at), new Date(b.created_at))
 })
 
-const getTweets = () => tweets
+tweetsById = tweets.reduce((carry, t) => {
+  carry[t.id_str] = t
+  return carry
+}, {})
+
+const getTweets = () => tweets.slice(0)
+
+const getTweetById = id => tweetsById[id]
+
+const getRepliesForTweet = twt => tweets.filter( t => t.in_reply_to_status_id_str === twt.id_str)
 
 function renderTweet(t, username, includeDate) {
   const tweetUrl = `https://twitter.com/${username}/status/${t.id_str}`
@@ -27,5 +36,7 @@ const findTweetIn = (list, id) => list.find(t => t.id_str === id)
 module.exports = {
   renderTweet,
   getTweets,
+  getTweetById,
+  getRepliesForTweet,
   findTweetIn
 }

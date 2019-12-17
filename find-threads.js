@@ -1,42 +1,33 @@
 const fs = require('fs')
-const { getTweets, renderTweet } = require('./lib')
+const { getTweets, getTweetById, getRepliesForTweet, renderTweet } = require('./lib')
 
 const [_0, _1, USERNAME, MINIMUM_THREAD_LENGTH] = process.argv
 
 const tweets = getTweets()
 const threads = []
+const threadedIds = []
 
-function newThread(twt) {
-  threads.push({
-    tweets: [twt],
-    lastId: twt.id_str
-  })
-}
-
-function addToThread(twt) {
-  const thread = threads.find(
-    t => t.lastId === twt.in_reply_to_status_id_str
-  )
-  if (thread) {
-    thread.tweets.push(twt)
-    thread.lastId = twt.id_str
-  }
-}
-
-const renderThread = th => {
-  const firstId = th.tweets[0].id_str
-  const md = th.tweets.map(t => renderTweet(t, USERNAME)).join('\n\n<!-- -->\n')
-  fs.writeFileSync(`./threads/${firstId}.md`, md)
+const buildThread = (thread, t) => {
+  thread.push(t)
+  threadedIds.push(t.id_str)
+  const replies = getRepliesForTweet(t)
+  replies.forEach(r => buildThread(thread, r))
+  return thread
 }
 
 tweets.forEach(t => {
-  if(t.in_reply_to_status_id_str) {
-    addToThread(t)
-  } else {
-    newThread(t)
+  if (!threadedIds.includes(t.id_str)) {
+    threads.push(buildThread([], t))
   }
 })
 
-const longThreads = threads.filter(t => t.tweets.length >= MINIMUM_THREAD_LENGTH)
+
+const renderThread = th => {
+  const firstId = th[0].id_str
+  const md = th.map(t => renderTweet(t, USERNAME)).join('\n\n<!-- -->\n')
+  fs.writeFileSync(`./threads/${firstId}.md`, md)
+}
+
+const longThreads = threads.filter(th => th.length >= MINIMUM_THREAD_LENGTH)
 
 longThreads.forEach(renderThread)

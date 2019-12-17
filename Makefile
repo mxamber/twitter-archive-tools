@@ -10,7 +10,7 @@ hashtags:
 
 threads:
 	mkdir -p threads
-	node find-threads.js selfawaresoup 5
+	node find-threads.js selfawaresoup 4
 
 hashtags/opsoup.md: hashtags
 	node find-hashtag.js selfawaresoup opsoup

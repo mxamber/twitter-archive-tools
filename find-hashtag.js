@@ -10,7 +10,6 @@ const tagTweets = tweets
     const prevId = t.in_reply_to_status_id_str
     if (prevId && !findTweetIn(all, prevId)) {
       const prevTweet = findTweetIn(tweets, prevId)
-      console.log(prevTweet)
       if (prevTweet) {
         carry.push(prevTweet)
       }

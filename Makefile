@@ -1,6 +1,6 @@
 .PHONY: all clean list-hashtags
 
-all: threads-rendered opsoup-rendered
+all: threads hashtags/opsoup.md hashtags/ThisIsGenderDysphoria.md
 
 list-hashtags:
 	node list-hashtags.js

@@ -1,5 +1,8 @@
 const format = require('date-fns/format')
 const compareAsc = require('date-fns/compareAsc')
+const Twitter = require('twitter')
+
+const client = new Twitter(require('./twitter-api.js'))
 
 global.window = {
   YTD: {
@@ -7,9 +10,20 @@ global.window = {
   }
 }
 require(`./archive/tweet.js`)
-const tweets = global.window.YTD.tweet.part0.filter(t => !/^RT /.test(t.full_text))
+const tweets = []
+const retweets = []
+global.window.YTD.tweet.part0.forEach(t => {
+  if (/^RT @/.test(t.full_text)) {
+    retweets.push(t)
+  } else {
+    tweets.push(t)
+  }
+})
 
 tweets.sort((a, b) => {
+  return compareAsc(new Date(a.created_at), new Date(b.created_at))
+})
+retweets.sort((a, b) => {
   return compareAsc(new Date(a.created_at), new Date(b.created_at))
 })
 
@@ -19,6 +33,7 @@ tweetsById = tweets.reduce((carry, t) => {
 }, {})
 
 const getTweets = () => tweets.slice(0)
+const getRetweets = () => retweets.slice(0)
 
 const getTweetById = id => tweetsById[id]
 
@@ -36,7 +51,9 @@ const findTweetIn = (list, id) => list.find(t => t.id_str === id)
 module.exports = {
   renderTweet,
   getTweets,
+  getRetweets,
   getTweetById,
   getRepliesForTweet,
-  findTweetIn
+  findTweetIn,
+  client
 }

@@ -1,9 +1,12 @@
-.PHONY: all clean list-hashtags
+.PHONY: all clean list-hashtags delete
 
 all: threads hashtags/opsoup.md hashtags/ThisIsGenderDysphoria.md hashtags/solderingsoup.md
 
 list-hashtags:
 	node list-hashtags.js
+
+delete:
+	node delete-tweets.js
 
 hashtags:
 	mkdir -p hashtags

@@ -1,5 +1,6 @@
 /node_modules
 /archive
-/twitter-*
+/twitter-20*
 /threads
 /hashtags
+twitter-api.js

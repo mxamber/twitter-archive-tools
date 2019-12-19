@@ -1,21 +1,9 @@
 {
   "name": "twitter-archive-tools",
-  "version": "1.0.0",
-  "description": "see `Makefile` for usage",
-  "main": "delete-tweets.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/selfawaresoup/twitter-archive-tools.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/selfawaresoup/twitter-archive-tools/issues"
-  },
-  "homepage": "https://github.com/selfawaresoup/twitter-archive-tools#readme",
   "dependencies": {
     "date-fns": "^2.8.1",
     "twitter": "^1.7.1"

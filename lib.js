@@ -9,14 +9,15 @@ global.window = {
     tweet: {}
   }
 }
-require(`./archive/tweet.js`)
+require(`./archive/data/tweet.js`)
 const tweets = []
 const retweets = []
 global.window.YTD.tweet.part0.forEach(t => {
-  if (/^RT @/.test(t.full_text)) {
-    retweets.push(t)
+  const tweet = t.tweet
+  if (/^RT @/.test(tweet.full_text)) {
+    retweets.push(tweet)
   } else {
-    tweets.push(t)
+    tweets.push(tweet)
   }
 })
 

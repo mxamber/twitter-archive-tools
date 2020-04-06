@@ -5,6 +5,11 @@ const isBefore = require('date-fns/isBefore')
 
 const applyTweetRules = t => {
   const tweetAge = differenceInCalendarDays(new Date(), new Date(t.created_at))
+  
+  if (!tweetAge) {
+    // something went wrong, don't delete
+    return false;
+  }
 
   if (isBefore(new Date(t.created_at), new Date(rules.earliestDate))) {
     return true
@@ -31,6 +36,11 @@ const applyTweetRules = t => {
 
 const applyRetweetRules = t => {
   const tweetAge = differenceInCalendarDays(new Date(), new Date(t.created_at))
+  
+  if (!tweetAge) {
+    // something went wrong, don't delete
+    return false;
+  }
 
   if (isBefore(new Date(t.created_at), new Date(rules.earliestDate))) {
     return true

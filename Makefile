@@ -1,6 +1,6 @@
 .PHONY: all clean list-hashtags delete
 
-all: threads hashtags/opsoup.md hashtags/ThisIsGenderDysphoria.md hashtags/solderingsoup.md
+all: threads hashtags/opsoup.md hashtags/ThisIsGenderDysphoria.md hashtags/solderingsoup.md hashtags/lyrasoup.md
 
 list-hashtags:
 	node list-hashtags.js
@@ -14,6 +14,9 @@ hashtags:
 threads:
 	mkdir -p threads
 	node find-threads.js selfawaresoup 4
+
+hashtags/lyrasoup.md: hashtags
+	node find-hashtag.js selfawaresoup lyrasoup
 
 hashtags/opsoup.md: hashtags
 	node find-hashtag.js selfawaresoup opsoup

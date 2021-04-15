@@ -1,8 +1,10 @@
 # twitter archive tools
 
-see `Makefile` for archive related usage
+Copy `twitter-api.js.sample` to `twitter-api.js` and fill in your API credentials.
 
-## other scripts
+See `Makefile` for archive related usage (extracting threads and hashtags, deleting old tweets)
+
+## Other scripts
 
 ### Block with followers
 

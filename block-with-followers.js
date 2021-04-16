@@ -1,5 +1,4 @@
-const { client } = require('./lib')
-const twitterConfig = require('./twitter-api.js')
+const { client, delay } = require('./lib')
 
 const userName = process.argv[2]
 
@@ -11,17 +10,6 @@ const block = async id => {
     .catch(err => `ERROR: ${err[0].message}`)
 
   console.log(`Blocking ${id} ... ${result}`)
-}
-
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
-
-const throttledBlock = async (ids, ms) => {
-  const id = ids.shift()
-  await block(id)
-  await delay(ms)
-  if (ids.length > 0) {
-    throttledBlock(ids, ms)
-  }
 }
 
 const _followerUserIds = client.get(`followers/ids`, {screen_name: userName, stringify_ids: true})
@@ -37,9 +25,12 @@ const _targetUserId = client.get('users/show', {screen_name: userName})
 })
 
 Promise.all([_targetUserId, _followerUserIds])
-  .then(idLists => {
+  .then(async idLists => {
     const [targetUserId, followerUserIds] = idLists
     const idsToBlock = [targetUserId].concat(followerUserIds) 
 
-    throttledBlock(idsToBlock, 100)
+    for (id of idsToBlock) {
+      await block(id)
+      await delay(100)
+    }
   })

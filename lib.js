@@ -49,6 +49,40 @@ function renderTweet(t, username, includeDate) {
 
 const findTweetIn = (list, id) => list.find(t => t.id_str === id)
 
+const deleteTweet = t => {
+  return new Promise((resolve, reject) => {
+    client.post(`statuses/destroy/${t.id_str}`, {}, (err, tweets, response) => {
+      if (err) {
+        console.log('ERROR', err)
+      }
+      resolve()
+    })
+  })
+}
+
+const deleteRetweet = t => {
+  return new Promise((resolve, reject) => {
+    client.post(`statuses/unretweet/${t.id_str}`, {}, (err, tweets, response) => {
+      if (err) {
+        console.log('ERROR', err)
+      }
+      resolve()
+    })
+  })
+}
+
+const logTweet = t => {
+  console.log('ID:', t.id_str)
+  console.log(t.created_at)
+  console.log(`${t.favorite_count} Likes, ${t.retweet_count} Retweets`)
+  console.log(t.full_text)
+  console.log('---------------')
+}
+
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
+const strToInt = s => parseInt(s, 10)
+
 module.exports = {
   renderTweet,
   getTweets,
@@ -56,5 +90,10 @@ module.exports = {
   getTweetById,
   getRepliesForTweet,
   findTweetIn,
-  client
+  client,
+  deleteTweet,
+  deleteRetweet,
+  logTweet,
+  delay,
+  strToInt
 }

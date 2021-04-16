@@ -1,7 +1,8 @@
 const fs = require('fs')
+const { screenName } = require('./config')
 const { getTweets, getTweetById, getRepliesForTweet, renderTweet } = require('./lib')
 
-const [_0, _1, USERNAME, MINIMUM_THREAD_LENGTH] = process.argv
+const [_0, _1, MINIMUM_THREAD_LENGTH] = process.argv
 
 const tweets = getTweets()
 const threads = []
@@ -24,7 +25,7 @@ tweets.forEach(t => {
 
 const renderThread = th => {
   const firstId = th[0].id_str
-  const md = th.map(t => renderTweet(t, USERNAME)).join('\n\n<!-- -->\n')
+  const md = th.map(t => renderTweet(t, screenName)).join('\n\n<!-- -->\n')
   fs.writeFileSync(`./threads/${firstId}.md`, md)
 }
 

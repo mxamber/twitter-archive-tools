@@ -1,7 +1,8 @@
 const fs = require('fs')
+const { screenName } = require('./config')
 const { getTweets, renderTweet, findTweetIn } = require('./lib')
 
-const [_0, _1, USERNAME, HASHTAG] = process.argv
+const [_0, _1, HASHTAG] = process.argv
 
 const tweets = getTweets()
 const tagTweets = tweets
@@ -20,7 +21,7 @@ const tagTweets = tweets
   }, [])
 
 const render = () => {
-  const md = tagTweets.map(t => renderTweet(t, USERNAME, true)).join('\n\n<!-- -->\n')
+  const md = tagTweets.map(t => renderTweet(t, screenName, true)).join('\n\n<!-- -->\n')
   fs.writeFileSync(`./hashtags/${HASHTAG}.md`, md)
 }
 

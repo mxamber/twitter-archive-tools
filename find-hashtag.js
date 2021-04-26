@@ -21,7 +21,8 @@ const tagTweets = tweets
   }, [])
 
 const render = () => {
-  const md = tagTweets.map(t => renderTweet(t, screenName, true)).join('\n\n<!-- -->\n')
+  let md = `*(archived tweets with the #${HASHTAG} hashtag)*\n\n`
+  md += tagTweets.map(t => renderTweet(t, screenName, true, true)).join('\n\n<!-- -->\n')
   fs.writeFileSync(`./hashtags/${HASHTAG}.md`, md)
 }
 

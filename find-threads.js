@@ -25,7 +25,8 @@ tweets.forEach(t => {
 
 const renderThread = th => {
   const firstId = th[0].id_str
-  const md = th.map(t => renderTweet(t, screenName)).join('\n\n<!-- -->\n')
+  let md = `(archived <a href="https://www.twitter.com/${screenName}/${firstId}">Twitter thread</a>)\n\n`
+  md += th.map(t => renderTweet(t, screenName)).join('\n\n<!-- -->\n')
   fs.writeFileSync(`./threads/${firstId}.md`, md)
 }
 

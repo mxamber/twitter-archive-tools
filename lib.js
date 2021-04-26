@@ -40,11 +40,15 @@ const getTweetById = id => tweetsById[id]
 
 const getRepliesForTweet = twt => tweets.filter( t => t.in_reply_to_status_id_str === twt.id_str)
 
-function renderTweet(t, username, includeDate) {
+function renderTweet(t, username, includeLink = false, includeDate = false) {
   const tweetUrl = `https://twitter.com/${username}/status/${t.id_str}`
   const dateString = includeDate ? ' ' + format(new Date(t.created_at), 'yyyy-MM-dd') : ''
   const quote = '> ' + t.full_text.split('\n').join('\n> ')
-  return `${quote} [🔗${dateString}](${tweetUrl})`
+  if (includeLink) {
+    return `${quote} [🔗${dateString}](${tweetUrl})`
+  } else {
+    return `${quote}`
+  }
 }
 
 const findTweetIn = (list, id) => list.find(t => t.id_str === id)

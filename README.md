@@ -31,6 +31,8 @@ This will create a file called `followers.json` insluding detailed profile data 
 
 Useful for safety-related investigations (stalkers, abusers, etc) since Twitter doesn't offer tools to search among your followers.
 
+Due to Twitter's strict rate limits on the `followers/list` endpoint, this script takes about 5 minutes to run for every 1000 followers.
+
 ### Find popular tweets
 
 Sweet vanity …

@@ -27,7 +27,7 @@ This will block the specified user and all their followers. Useful for avoiding 
 node get-followers.js [screen_name]
 ```
 
-This will create a file called `followers.json` insluding detailed profile data of all followers of the specified account.
+This will create a file called `followers.json` including detailed profile data of all followers of the specified account.
 
 Useful for safety-related investigations (stalkers, abusers, etc) since Twitter doesn't offer tools to search among your followers.
 

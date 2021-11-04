@@ -21,6 +21,28 @@ node block-with-followers.js [screen_name]
 
 This will block the specified user and all their followers. Useful for avoiding pile-ons and targeted harasssment.
 
+This only support up to 5000 followers due to Twitter's API limitations.
+
+### Block from a list of users
+
+```sh
+node block-from-file.js [file_name]
+```
+
+Will read the specified file as a JSON file, assuming that it contains an array of Twitter user objects. Each needs at least an `id_str` property.
+
+Useful to block a very large number of people, e.g. followers og a large account. The list can be gerated using `get-followers.js`
+
+### Get followers
+
+```sh
+node get-followers.js [screen_name]
+```
+
+Fetches the conplete list of followers for an account and stores it as JSON in `followers.json`.
+
+This can take a very long time due to API rate limits. About 200 followers per minute. The resulting list can be used for `block-from-file.js`.
+
 ### Create a dump of all followers of an account
 
 ```sh

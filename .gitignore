@@ -4,4 +4,4 @@
 /threads
 /hashtags
 twitter-api.js
-followers.json
+followers*.json

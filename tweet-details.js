@@ -1,4 +1,4 @@
-const { client, delay } = require('./lib')
+const { client, delay } = require('./core')
 
 const id = process.argv[2]
 

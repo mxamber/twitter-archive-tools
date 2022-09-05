@@ -75,29 +75,6 @@ const deleteRetweet = t => {
   })
 }
 
-const getFollowers = async (userName) => {
-  let followers = []
-  let cursor = -1
-
-  do {
-    const options = {
-      screen_name: userName,
-      include_entities: true,
-      count: 200,
-      cursor
-    }
-    console.log(options)
-    const res = await client.get(`followers/list`, options)
-    cursor = res.next_cursor
-    console.log("Fetched", res.users.length, "followers\n-----")
-
-    followers = followers.concat(res.users)
-    await delay(60*1000)
-  } while (cursor != 0)
-  
-  return followers
-}
-
 const logTweet = t => {
   console.log('ID:', t.id_str)
   console.log(t.created_at)
@@ -105,10 +82,6 @@ const logTweet = t => {
   console.log(t.full_text)
   console.log('---------------')
 }
-
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
-
-const strToInt = s => parseInt(s, 10)
 
 module.exports = {
   renderTweet,
@@ -120,8 +93,5 @@ module.exports = {
   client,
   deleteTweet,
   deleteRetweet,
-  getFollowers,
   logTweet,
-  delay,
-  strToInt
 }

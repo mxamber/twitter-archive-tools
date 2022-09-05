@@ -1,4 +1,4 @@
-const { client, delay } = require('./lib')
+const { client, delay } = require('./core')
 const { readFileSync } = require('fs')
 
 const fileName = process.argv[2]

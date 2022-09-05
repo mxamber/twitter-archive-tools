@@ -1,4 +1,5 @@
-const { deleteTweet, delay, getTweets, logTweet } = require('./lib')
+const { delay } = require('./core')
+const { deleteTweet, getTweets, logTweet } = require('./lib')
 const config = require('./config')
 const differenceInCalendarDays = require('date-fns/differenceInCalendarDays')
 

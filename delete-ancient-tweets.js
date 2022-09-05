@@ -1,4 +1,5 @@
-const { deleteTweet, delay, getTweets, logTweet } = require('./lib')
+const { delay } = require('./core')
+const { deleteTweet, getTweets, logTweet } = require('./lib')
 const config = require('./config')
 const isBefore = require('date-fns/isBefore')
 const parseIsoDate = require('date-fns/parseISO')

@@ -1,4 +1,4 @@
-const { client, delay, getFollowers } = require('./lib')
+const { client, delay, getFollowers } = require('./core')
 const { writeFileSync } = require('fs')
 
 const userName = process.argv[2]

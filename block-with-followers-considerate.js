@@ -1,5 +1,5 @@
 // load dependencies
-const { client, delay } = require('./lib')
+const { client, delay } = require('./core')
 
 // parse target username from params
 const userName = process.argv[2]

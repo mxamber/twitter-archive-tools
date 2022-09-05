@@ -1,4 +1,5 @@
-const { deleteTweet, delay, getTweets, logTweet } = require('./lib')
+const { delay } = require('./core')
+const { deleteTweet, getTweets, logTweet } = require('./lib')
 const [_0, _1, HASHTAG] = process.argv
 
 const tweetHasHashtag = t => t.full_text.indexOf(`#${HASHTAG}`) >= 0

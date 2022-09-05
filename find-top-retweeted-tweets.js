@@ -1,4 +1,5 @@
-const { getTweets, logTweet, strToInt } = require('./lib')
+const { strToInt } = require('./core')
+const { getTweets, logTweet } = require('./lib')
 
 const [_0, _1, MINRETWEETS] = process.argv
 

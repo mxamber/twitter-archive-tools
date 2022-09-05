@@ -1,4 +1,4 @@
-const { client } = require('./lib')
+const { client } = require('./core')
 
 const blocks = async (cursor = -1) => {
   let ids = []

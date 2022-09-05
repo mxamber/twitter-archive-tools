@@ -13,7 +13,7 @@ E.g. If you run the `delete-tweets` script for the first time and your account i
 
 ### Block with followers
 
-(doesn't require an archive)
+(doesn't require an archive, API keys suffice)
 
 ```sh
 node block-with-followers.js [screen_name]
@@ -22,6 +22,12 @@ node block-with-followers.js [screen_name]
 This will block the specified user and all their followers. Useful for avoiding pile-ons and targeted harasssment.
 
 This only support up to 5000 followers due to Twitter's API limitations.
+
+```sh
+node block-with-followers-considerate.js [screen_name]
+```
+
+This will exclude users you follow from the block list. For when you don't want to nuke mutuals.
 
 ### Block from a list of users
 
